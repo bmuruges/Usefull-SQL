@@ -1,0 +1,5 @@
+/* To Get year between some Ranges */
+
+SELECT LISTAGG(to_char((to_date(:START_DATE,'yyyy') + NUMTOYMINTERVAL(ROWNUM-1,'YEAR')),'yyyy' ),',')WITHIN GROUP (order by ROWNUM) as P_YEAR
+FROM all_objects
+WHERE ROWNUM <= to_char(to_date(:END_DATE,'yyyy'),'yyyy')-to_char(to_date(:START_DATE,'yyyy'),'yyyy')+1;
